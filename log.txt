@@ -1,0 +1,79 @@
+
+Spotify search: hello
+Results returned: 20
+-----------------------Timestamp: 1523226356101
+Spotify search: hello
+Results returned: 20
+-----------------------NTimestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: get happy
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: hello
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: "get happy"
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: hello
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: hello
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: get happy
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: get happy pharrell
+Results returned: 11
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: get lucky
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: happy pharrell
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: sounds of science
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 15:04
+Activity: Spotify search
+Query: hello
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 16:04
+Activity: Post Tweet
+Text: Hey twitterverse. sup.
+-----------------------
+Timestamp: 2018-04-08 16:04
+Activity: Post Tweet
+Text: I'm getting hungry. Hungry for cheese.
+-----------------------
+Timestamp: 2018-04-08 16:04
+Activity: Spotify search
+Query: john e smoke
+Results returned: 20
+-----------------------
+Timestamp: 2018-04-08 16:04
+Activity: Spotify search
+Query: johnny smoke
+Results returned: 20
+-----------------------
