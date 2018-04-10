@@ -29,3 +29,5 @@ Timestamp: 2018-04-09 11:32 pm
 Activity: Post tweet
 Text: Time to commit and go to bed. Good homework.
 -----------------------
+Timestamp: 2018-04-10 12:50 am
+Activity: View Log

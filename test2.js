@@ -1,10 +1,20 @@
+const fetch = require('node-fetch');
 
 
-var url="https://icanhazdadjoke.com/"
+var url="https://icanhazdadjoke.com/slack"
 
-var joke=fetch(url).then(function(data){
-    console.log(data);
-}).catch(function(){
-    return;
-});
+fetch(url)
+    .then(res => res.json())
+    .then(json => console.log("\n==========================\n"+json.attachments[0].text+"\n==========================\n"));
+
+        
+    fetch(url)
+	.catch(err => console.error(err));     
+        
+        
+        
+        
+        
+    //     res => res.json())
+    // .then(json => console.log(json.attachments[0].text));
 

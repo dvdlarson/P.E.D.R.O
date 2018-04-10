@@ -1,5 +1,6 @@
 require("dotenv").config();
 var moment=require("moment");
+const fetch = require('node-fetch');
 var inquirer=require("inquirer");
 var keys=require("./keys.js");
 var fs=require("fs");
@@ -15,7 +16,7 @@ var client = new Twitter(keys.twitter);
 var command = process.argv[2];
 
 if(command){
-    console.log("\nP.E.D.R.O. is your personal electronic/digitial response organizer.\nSimply run the program, and use the up/down arrow keys to choose an action.\nAvailable actions:\n- See your last 20 tweets\n- SEND a tweet (new)\n- Find a song on Spotify\n- Get IMDB movie information\n- Do a randomly specified thing stored in a text file\n- View or clear the user activity log");
+    console.log("\nP.E.D.R.O. is your personal electronic/digitial response organizer.\nSimply run the program, and use the up/down arrow keys to choose an action.\nAvailable actions:\n- See your last 20 tweets\n- SEND a tweet (new)\n- Find a song on Spotify\n- Get IMDB movie information\n- Do a randomly specified thing stored in a text file\n- View or clear the user activity log\n- Get a joke to brighten your day");
     return;
 }
 
@@ -25,8 +26,8 @@ function getAction(){
     now=moment().format("MMMM D, YYYY hh:mm a");
     inquirer.prompt({
         type: "list",
-      message: "\nWelcome to P.E.D.R.O.\nCurrent date and time: "+now+".\nWhat would you like to do?",
-      choices: ["See my last 20 Tweets", "Tweet something","Find a song on Spotify", "Get Movie Info","Do a random thing","View/Clear Log","Quit"],
+      message: "Current date and time: "+now+".\nWhat would you like to do?",
+      choices: ["Tell me a joke","See my last 20 Tweets", "Tweet something","Find a song on Spotify", "Get Movie Info","View/Clear Log","Do a random thing","Quit"],
       name: "action"
     }).then(function(response){
     if(response.action=="See my last 20 Tweets"){
@@ -76,6 +77,10 @@ function getAction(){
         //console.log("I'm gonna do a random thing soon.\n\n");
         doRandom();
        // getAction();
+    }
+    else if(response.action=="Tell me a joke"){
+        getJoke();
+      
     }
     else if(response.action=="View/Clear Log"){
         inquirer.prompt({
@@ -216,6 +221,18 @@ function clearLog(){
         getAction();
     }
 });
+}
+function getJoke(){
+    var url="https://icanhazdadjoke.com/slack"
+
+    fetch(url)
+    .then(res => res.json())
+    .then(json => console.log("\n==========================\n"+json.attachments[0].text+"\n==========================\n")).then(getAction());
+        
+    fetch(url)
+	.catch(err => console.error(err));     
+    // var timestamp=moment().format("YYYY-MM-DD hh:mm a");
+    // fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: Get Joke\nJoke:"+json.attachments[0].text,(error)=>{return;});
 }
 //program action code
 getAction();
