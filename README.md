@@ -25,23 +25,35 @@ Specifically:
   <li>It was difficult to remember the specific commands, which required a long reminder message</li>
   <li>The argv format requires a lot of typing.</li>
   <li>After each task, the user is returned to the command line. It did not feel like being in a personal assistant application.</li>
-  <li>Logging all returned data made for a huge and somewhat unreadable log file.</li>
+  <li>Logging all returned data made for a very large and somewhat unreadable log file.</li>
+  <li>There is no provision in the original design to view or clear the log file.</li>
 </ul>
 
-In the evolution of the project, I found a much better and more 'natural-language' type user experience was achieved by translating the various function arguments into a list of natural language commands with the Inquirer NPM package. This resolved the need for the user to remember specific complicated commands, or to be reminded, and allowed for the application experience to persist from task to task. Further, it allowed for multi-part user input to be processed without the need for additional functions to parse the multiple words into a string. Log file export limited to action summary information & details on posted tweets for a more usable log.
+In the evolution of the project, I found a much better and more 'natural-language' type user experience was achieved by translating the various function arguments into a list of natural language commands with the Inquirer NPM package. 
+This resolved several issues:
+<ul>
+<li>The need for the user to remember specific complicated commands, or to be reminded.</li>
+<li>Allowed for the application experience to persist from task to task.</li>
+<li>Allowed for multi-part user input to be processed without the need for additional functions to parse multiple words into a string.</li>
+<li>UI able to feature more complex, multi-level user interactions and future-proof functionality like input validation should it be needed.</li>
+<ul>
 
-Please review this incarnation of the personal assistant.
+The log file export in this version was limited to specific action summary information & logs specific details only for posted tweets.
+
+Please review this incarnation of the personal assistant and enjoy.
 
 Introducing...
 
 <h1>P.E.D.R.O.</h1>
 
   P.E.D.R.O. is your Personal E-Digital Resource Organizer. Simply run pedro.js from the command line with the command 'node pedro.js'.
-If you give P.E.D.R.O. an extra argv command line argument (like 'help'), you will be presented with a brief help doc.
+  If you give P.E.D.R.O. an extra argv command line argument (like 'help'), you will be presented with a brief help doc. P.E.D.R.O. works best with a larger size terminal window.
+
   P.E.D.R.O. can perform all required functions plus these additional functions:
 <ul>
   <li>Post a Tweet</li>
-  <li>View the Log file</li>
+  <li>View the log file</li>
+  <li>Clear the log file</li>
   <li>Quit the application</li>
 </ul>
   P.E.D.R.O. includes this tech:
@@ -51,3 +63,17 @@ If you give P.E.D.R.O. an extra argv command line argument (like 'help'), you wi
   <li>IMDB API</li>
   <li>Node.js</li>
 </ul>
+
+If you are going to attempt to run P.E.D.R.O. you will need to create your own .env file with your personal twitter & spotify secret keys.
+It should be named simply '.env', contain the information below, and saved in the main directory with the other program files:
+# Spotify API keys
+
+SPOTIFY_ID=<Your key here>
+SPOTIFY_SECRET=<Your key here>
+
+# Twitter API keys
+
+TWITTER_CONSUMER_KEY=<Your key here> 
+TWITTER_CONSUMER_SECRET=<Your key here>
+TWITTER_ACCESS_TOKEN_KEY=<Your key here>
+TWITTER_ACCESS_TOKEN_SECRET=<Your key here>

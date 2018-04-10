@@ -1,8 +1,10 @@
-var fs=require("fs");
 
-fs.readFile("log.txt", "utf8", function (error, data) {
 
+var url="https://icanhazdadjoke.com/"
+
+var joke=fetch(url).then(function(data){
     console.log(data);
-
+}).catch(function(){
+    return;
 });
 

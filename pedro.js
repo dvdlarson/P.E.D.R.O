@@ -15,7 +15,7 @@ var client = new Twitter(keys.twitter);
 var command = process.argv[2];
 
 if(command){
-    console.log("\nP.E.D.R.O. is your personal electronic/digitial response organizer.\nSimply run the program, and use the up/down arrow keys to choose an action.\nAvailable actions:\n- See your last 20 tweets\n- SEND a tweet (new)\n- Find a song on Spotify\n- Get IMDB movie information\n- Do a randomly specified thing stored in a text file");
+    console.log("\nP.E.D.R.O. is your personal electronic/digitial response organizer.\nSimply run the program, and use the up/down arrow keys to choose an action.\nAvailable actions:\n- See your last 20 tweets\n- SEND a tweet (new)\n- Find a song on Spotify\n- Get IMDB movie information\n- Do a randomly specified thing stored in a text file\n- View or clear the user activity log");
     return;
 }
 
@@ -25,8 +25,8 @@ function getAction(){
     now=moment().format("MMMM D, YYYY hh:mm a");
     inquirer.prompt({
         type: "list",
-      message: "\nWelcome to P.E.D.R.O.\nCurrent date and time: "+now+".\nWhat would you like to do?\n",
-      choices: ["See my last 20 Tweets", "Tweet something","Find a song on Spotify", "Get Movie Info","Do a random thing","View Log","Quit"],
+      message: "\nWelcome to P.E.D.R.O.\nCurrent date and time: "+now+".\nWhat would you like to do?",
+      choices: ["See my last 20 Tweets", "Tweet something","Find a song on Spotify", "Get Movie Info","Do a random thing","View/Clear Log","Quit"],
       name: "action"
     }).then(function(response){
     if(response.action=="See my last 20 Tweets"){
@@ -64,6 +64,9 @@ function getAction(){
             message:"What movie would you like to know more about?"
         }).then(function(response){
             var movie=response.movieInput
+            if (movie==""){
+                movie="Mr. Nobody";
+            }
             // movie=cleanInput(movie);
             getIMDB(movie);           
             
@@ -74,11 +77,35 @@ function getAction(){
         doRandom();
        // getAction();
     }
-    else if(response.action=="View Log"){
-        viewLog();
+    else if(response.action=="View/Clear Log"){
+        inquirer.prompt({
+            type: "list",
+          message: "\nWhich would you like to do?",
+          choices: ["View Log", "Clear Log"],
+          name: "choice"
+        }).then(function(response){
+            if(response.choice=="Clear Log"){
+                inquirer.prompt({
+                    type: "list",
+                message: "\nAre you sure? This action can not be reversed.",
+                choices: ["Yes", "No"],
+                name: "verify"
+                }).then(function(response){
+            var verify=response.verify;
+           if(verify=="Yes"){
+               clearLog();
+           }
+            else {
+                getAction();
+            };
+           
+        })
+    }
+    else {viewLog();}
+    })
     }
     else if(response.action=="Quit"){
-        console.log("Thank you for using your personal assistant.");
+        console.log("Thank you for using P.E.D.R.O.");
         return;
     };
 }) //end get action
@@ -98,7 +125,7 @@ function getTwitter(){
 
         }//end for loop
         var timestamp=moment().format("YYYY-MM-DD hh:mm a");
-        fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: Get Twitter History\nResult:SUCCESS\n-----------------------", (error) => { console.log('There was an error'); });
+        fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: Get Twitter History\nResult:SUCCESS\n-----------------------", (error) => { return; });
         });//end twitter promise function
         getAction();
 }
@@ -108,9 +135,9 @@ function postTweet(text){
         if (!error) {
          console.log("\n\nYour tweet has been posted.");
         }
-       else { console.log(error);}
+       else { return;}
        var timestamp=moment().format("YYYY-MM-DD hh:mm a");
-       fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: Post tweet\nText: "+text+"\n-----------------------",(error)=>{console.log(error);});
+       fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: Post tweet\nText: "+text+"\n-----------------------",(error)=>{return;});
       });
       getAction();
 }
@@ -174,11 +201,21 @@ function viewLog(){
 
         console.log(data);
         var timestamp=moment().format("YYYY-MM-DD hh:mm a");
-        fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: View Log\n",(error)=>{console.log(error);});
+        fs.appendFile('log.txt', "\nTimestamp: "+timestamp+"\nActivity: View Log\n",(error)=>{return;});
        
         getAction();
     
     });    
+}
+function clearLog(){
+    fs.writeFile("log.txt", "", (err) => {
+        
+    if(err) throw err;
+    else {
+        console.log("====================================\nLog file has been cleared\n====================================");
+        getAction();
+    }
+});
 }
 //program action code
 getAction();
