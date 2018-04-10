@@ -52,15 +52,16 @@ Introducing...
   P.E.D.R.O. can perform all required functions plus these additional functions:
 <ul>
   <li>Post a Tweet</li>
+  <li>Tell me a joke</li>
   <li>View the log file</li>
   <li>Clear the log file</li>
   <li>Quit the application</li>
 </ul>
   P.E.D.R.O. includes this tech:
 <ul>
-  <li>NPM packages = Moment, Inquirer, Node-spotify-api, Twitter, Request, FS</li>
+  <li>NPM packages = Moment, Inquirer, Node-spotify-api, Twitter, Request, FS,Node-fetch</li>
   <li>ENV variable file for keys</li>
-  <li>IMDB API</li>
+  <li>IMDB API,icanhazdadjoke.com API</li>
   <li>Node.js</li>
 </ul>
 
