@@ -57,6 +57,7 @@ Introducing...
   <li>Clear the log file</li>
   <li>Quit the application</li>
 </ul>
+
   P.E.D.R.O. includes this tech:
 <ul>
   <li>NPM packages = Moment, Inquirer, Node-spotify-api, Twitter, Request, FS,Node-fetch</li>
