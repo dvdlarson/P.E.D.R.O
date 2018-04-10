@@ -41,6 +41,7 @@ If you give P.E.D.R.O. an extra command line argument (like 'help'), you will be
 <ul>
   <li>Post a Tweet</li>
   <li>View the Log file</li>
+  <li>Quit the application</li>
 </ul>
   P.E.D.R.O. includes this tech:
 <ul>
